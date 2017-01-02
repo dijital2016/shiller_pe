@@ -6,8 +6,7 @@ module Calculations
   def three_mo_cagr(date)
     start_date = date
     end_date = (date + 3.months)
-    start_price = PriceShiller.
-    total_return = (end_price + divs received)/start_price
-    ##(end price + divs recv'd during period)-start price
+    start_price = PriceShiller.find_by(date.to_date).sp500_price
+    #total_return = (end_price + divs received)/start_price
   end
 end

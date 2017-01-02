@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Historical S&P 500 Stock Prices</h1>
+  <h2>Historical S&P 500 Stock Prices</h2>
   <table class="table-bordered table-condensed">
     <th align="center">Date</th><th align="center">S&P 500 Price</th>
           <th align="center">Shiller P/E Ratio</th><th align="center">Monthly Dividends</th>
@@ -7,7 +7,7 @@
       <tr>
         <td class="col-xs-" align="center"><%= line.date %></td>
         <td class="col-xs-" align="center"><%= number_to_currency(line.sp500_price) %></td>
-        <td class="col-xs-" align="center"><%= line.shiller_pe %></td>
+        <td class="col-xs-" align="center"><%= number_with_precision(line.shiller_pe, :precision => 2) %></td>
         <td class="col-xs-" align="center"><%= number_to_currency(line.mo_divs) %></td>
       </tr>
     <% end %>
