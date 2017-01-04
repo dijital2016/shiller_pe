@@ -2,6 +2,7 @@ module Calculations
 
   def decile_shiller_pe(start_date, end_date)
     PriceShiller.where(:date => start_date..end_date).average(:shiller_pe).to_f.round(2)
+    ##PriceShiller.order(:shiller_pe).offset(120).limit(120) ##takes 2nd decile
   end
 
   def three_mo_cagr(date)
