@@ -8,11 +8,11 @@ class StandardPoorService
     @price_response_array = JSON.parse(response.body, symbolize: true)["dataset"]["data"]
   end
 
-  # def prices
-  #   @price_response_array ||= all_sp_prices
-  #   @price_response_array.map do |element|
-  #     element[1]
-  #   end
-  # end
+  def prices ## this is for the price array to generate the highstock charts
+    @price_response_array ||= all_sp_prices
+    @price_response_array.map do |element|
+      element[1]
+    end
+  end
 
 end
