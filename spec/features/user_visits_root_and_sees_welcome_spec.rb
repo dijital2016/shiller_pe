@@ -14,4 +14,4 @@ describe "a user visits root page and sees welcome" do
       expect(page).to have_content("26.50")
     end
   end
-end
+end 
