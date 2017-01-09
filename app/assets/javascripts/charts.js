@@ -1,66 +1,21 @@
-$(function () {
-    var seriesOptions = [],
-        seriesCounter = 0,
-        names = ['MSFT', 'AAPL', 'GOOG'];
-
-    /**
-     * Create the chart when all data is loaded
-     * @returns {undefined}
-     */
-    function createChart() {
-
-        Highcharts.stockChart('container', {
-
-            rangeSelector: {
-                selected: 4
-            },
-
-            yAxis: {
-                labels: {
-                    formatter: function () {
-                        return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                    }
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 2,
-                    color: 'silver'
-                }]
-            },
-
-            plotOptions: {
-                series: {
-                    compare: 'percent',
-                    showInNavigator: true
-                }
-            },
-
-            tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-                valueDecimals: 2,
-                split: true
-            },
-
-            series: seriesOptions
-        });
-    }
-
-    $.each(names, function (i, name) {
-
-        $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?',    function (data) {
-
-            seriesOptions[i] = {
-                name: name,
-                data: data
-            };
-
-            // As we're loading the data asynchronously, we don't know what order it will arrive. So
-            // we keep a counter and create the chart when all the data is loaded.
-            seriesCounter += 1;
-
-            if (seriesCounter === names.length) {
-                createChart();
-            }
-        });
-    });
-});
+// const url = 'https://localhost.com/api/v1/data'
+//
+// window.fetch(url).then((res) => res.json()).then(json => {
+//     console.table(json)
+//     const series = [...Array(3)].map((v, i) => {
+//     	const data = json.map((o) => {
+//         return [ Date.parse(o.date), Number(o[Object.keys(o)[i+2]]) ]
+//       })
+//       return {data: data}
+//     })
+//     console.table(series)
+//
+//     const options = {
+//     	series: series,
+//       xAxis: {
+//       	type: 'datetime'
+//       }
+//     }
+//     const chart = Highcharts.chart('container', options)
+//   }
+// )

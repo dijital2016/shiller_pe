@@ -14,14 +14,14 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'figaro'
 gem 'faraday'
-gem "highcharts-rails"
 gem 'highstock-rails'
 gem "active_model_serializers"
 gem 'rails_12factor'
+gem 'jquery-ui-rails'
+gem 'rack-cors', :require => 'rack/cors'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

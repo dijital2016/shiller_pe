@@ -1,6 +1,7 @@
 class ChartsController < ApplicationController
   def index
-    @all_data = PriceShiller.all
+    render :file => index.html.erb, :content_type => application/json
+
   end
 
 end
