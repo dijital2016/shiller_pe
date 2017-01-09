@@ -1,5 +1,6 @@
 class PriceShiller < ApplicationRecord
   validates :date, uniqueness: true
+  enum decile: [:unassigned, :one, :two, :three, :four, :five, :six, :seven, :eight, :nine, :ten]
 
   def self.all_dates
     StandardPoorService.all_sp_prices.map do |line|
