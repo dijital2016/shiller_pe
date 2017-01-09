@@ -9,7 +9,8 @@ describe Api::V1::DataController do
     price_shillers = JSON.parse(response.body, symbolize_names: true)
     ps = price_shillers.first
 
-    expect(ps.length).to eq(2)
+    expect(price_shillers.count).to eq(2)
+    expect(ps.length).to eq(5)
     expect(ps).to have_key(:date)
     expect(ps).to have_key(:sp500_price)
     expect(ps).to have_key(:shiller_pe)
