@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20170109000918) do
     t.date     "date"
     t.decimal  "sp500_price"
     t.decimal  "shiller_pe"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.decimal  "mo_divs"
-    t.string   "decile"
+    t.string   "decile",      default: "0"
   end
 
 end
