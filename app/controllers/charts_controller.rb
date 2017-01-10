@@ -3,4 +3,7 @@ class ChartsController < ApplicationController
     @all_data = PriceShiller.all
   end
 
+  def show
+  end
+
 end
