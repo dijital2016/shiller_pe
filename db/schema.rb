@@ -10,19 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109000918) do
+ActiveRecord::Schema.define(version: 20170110214902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "decile_performances", force: :cascade do |t|
+    t.integer  "decile"
+    t.decimal  "one_mo"
+    t.decimal  "three_mo"
+    t.decimal  "six_mo"
+    t.decimal  "one_yr"
+    t.decimal  "three_yr"
+    t.decimal  "five_yr"
+    t.decimal  "ten_yr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "price_shillers", force: :cascade do |t|
     t.date     "date"
     t.decimal  "sp500_price"
     t.decimal  "shiller_pe"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
     t.decimal  "mo_divs"
-    t.string   "decile",      default: "0"
+    t.integer  "decile"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.decimal  "one_mo"
+    t.decimal  "three_mo"
+    t.decimal  "six_mo"
+    t.decimal  "one_yr"
+    t.decimal  "three_yr"
+    t.decimal  "five_year"
+    t.decimal  "ten_yr"
   end
 
 end

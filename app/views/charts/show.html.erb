@@ -1,6 +1,6 @@
 <div id="container" style="width:100%; height:400px;"></div>
 <script>
-const url = 'https://dl.dropboxusercontent.com/u/118136722/highcharts/data_examples/data_3.json'
+const url = 'http://localhost:3000/api/v1/data'
 
 window.fetch(url).then((res) => res.json()).then(json => {
     console.table(json)

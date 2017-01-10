@@ -1,16 +1,21 @@
 class PriceShiller < ApplicationRecord
+  include Calculations
   validates :date, uniqueness: true
-  enum decile: [:unassigned, :one, :two, :three, :four, :five, :six, :seven, :eight, :nine, :ten]
+  attr_reader :decile_hash
 
-  def update
-    @price_shiller= PriceShiller.find(params[:id])
-    @price_shiller.update!(price_shiller_params)
-    if @price_shiller.save      flash[:success] = "#{@price_shiller.date} record updated!"
-      redirect_to :root_path
-    else
-      render :root_path
-    end
-  end
+  enum decile: {
+    unassigned: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+    ten: 10
+  }
 
   def self.all_dates
     StandardPoorService.all_sp_prices.map do |line|
@@ -31,6 +36,49 @@ class PriceShiller < ApplicationRecord
       puts "Updated mo_divs for #{line[0]}"
 
     end
+  end
+
+  def convert_decile(word)
+    @decile_hash[:word]
+  end
+
+  def self.decile_calcs
+    PriceShiller.order(:shiller_pe).first(120).each do |line|
+      line.one!
+    end
+    PriceShiller.order(:shiller_pe).offset(120).first(120).each do |line|
+      line.two!
+    end
+    PriceShiller.order(:shiller_pe).offset(240).first(120).each do |line|
+      line.three!
+    end
+    PriceShiller.order(:shiller_pe).offset(360).first(120).each do |line|
+      line.four!
+    end
+    PriceShiller.order(:shiller_pe).offset(480).first(120).each do |line|
+      line.five!
+    end
+    PriceShiller.order(:shiller_pe).offset(600).first(120).each do |line|
+      line.six!
+    end
+    PriceShiller.order(:shiller_pe).offset(720).first(120).each do |line|
+      line.seven!
+    end
+    PriceShiller.order(:shiller_pe).offset(840).first(120).each do |line|
+      line.eight!
+    end
+    PriceShiller.order(:shiller_pe).offset(960).first(120).each do |line|
+      line.nine!
+    end
+    PriceShiller.order(:shiller_pe).offset(1080).each do |line|
+      line.ten!
+    end
+  end
+
+  def self.by_date(date)
+    PriceShiller.find_by(date: date).update(
+    one_mo:
+    )
   end
 
   private

@@ -5,12 +5,15 @@
   <table class="table-bordered table-condensed" align="left" style="background-color:#b3ccff;">
     <th align="center">Date</th><th align="center">S&P 500<br />Price</th>
           <th align="center">Shiller P/E<br />Ratio</th><th align="center">Monthly<br />Dividends</th>
+          <th align="center">Shiller P/E<br />Decile</th>
     <% @all_data.each do |line| %>
       <tr>
         <td class="col-xs-" align="center"><%= line.date %></td>
         <td class="col-xs-" align="center"><%= number_to_currency(line.sp500_price) %></td>
         <td class="col-xs-" align="center"><%= number_with_precision(line.shiller_pe, :precision => 2) %></td>
         <td class="col-xs-" align="center"><%= number_to_currency(line.mo_divs) %></td>
+        <td class="col-xs-" align="center"><%= @decile_hash[line.decile.to_sym] %></td>
+
       </tr>
     <% end %>
   </table>

@@ -1,0 +1,2 @@
+class DecilePerformance < ApplicationRecord
+end
