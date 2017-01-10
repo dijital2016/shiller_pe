@@ -1,5 +1,5 @@
 class PriceShiller < ApplicationRecord
-  include Calculations
+  include NumberCrunching
   validates :date, uniqueness: true
   attr_reader :decile_hash
 
@@ -17,20 +17,20 @@ class PriceShiller < ApplicationRecord
     ten: 10
   }
 
-  def self.all_dates
+  def self.load_all_sp500_prices
     StandardPoorService.all_sp_prices.map do |line|
       PriceShiller.create!(date: line[0].to_date, sp500_price: line[1], shiller_pe: "", mo_divs: "")
     end
   end
 
-  def self.all_shiller_dates
+  def self.load_all_shiller_pe_ratios
     ShillerService.all_shiller_prices.map do |line|
       PriceShiller.find_by(date: line[0].to_date).update!(shiller_pe: line[1])
       puts "Updated shiller_pe for #{line[0]}"
     end
   end
 
-  def self.all_divs
+  def self.load_all_dividends
     Sp500DividendService.all_divs.map do |line|
       PriceShiller.find_by(date: (line[0].to_date)+1.day).update!(mo_divs: line[1])
       puts "Updated mo_divs for #{line[0]}"
@@ -38,11 +38,7 @@ class PriceShiller < ApplicationRecord
     end
   end
 
-  def convert_decile(word)
-    @decile_hash[:word]
-  end
-
-  def self.decile_calcs
+  def self.decile_calculations
     PriceShiller.order(:shiller_pe).first(120).each do |line|
       line.one!
     end
@@ -75,9 +71,16 @@ class PriceShiller < ApplicationRecord
     end
   end
 
-  def self.by_date(date)
-    PriceShiller.find_by(date: date).update(
-    one_mo:
+  def self.performance_by_date(date)
+    ps = PriceShiller.find_by(date: date)
+    ps.update(
+    one_mo: ps.cagr_calcs(date, date + 1.month),
+    three_mo: ps.cagr_calcs(date,date + 3.months),
+    six_mo: ps.cagr_calcs(date, date + 6.months),
+    one_yr: ps.cagr_calcs(date, date + 1.year),
+    three_yr: ps.cagr_calcs(date, date + 3.years),
+    five_yr: ps.cagr_calcs(date, date + 5.years),
+    ten_yr: ps.cagr_calcs(date, date + 10.years),
     )
   end
 
