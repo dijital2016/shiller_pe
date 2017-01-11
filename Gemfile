@@ -20,7 +20,7 @@ gem 'figaro'
 gem 'faraday'
 gem 'highstock-rails'
 gem "active_model_serializers"
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use ActiveModel has_secure_password

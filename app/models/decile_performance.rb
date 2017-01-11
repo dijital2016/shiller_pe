@@ -4,33 +4,32 @@ class DecilePerformance < ApplicationRecord
 
   end
 
-  def one_mo(decile)
-
-    @ps.update!.average(:one_mo)
+  def one_mo
+    @ps.average(:one_mo)
   end
 
-  def three_mo(decile)
-    PriceShiller.where(decile: decile).average(:three_mo)
+  def three_mo
+    @ps.average(:three_mo)
   end
 
-  def one_mo(decile)
-    PriceShiller.where(decile: decile).average(:six_mo)
+  def six_mo
+    @ps.average(:six_mo)
   end
 
-  def one_mo(decile)
-    PriceShiller.where(decile: decile).average(:one_mo)
+  def one_yr
+    @ps.average(:one_yr)
   end
 
-  def one_mo(decile)
-    PriceShiller.where(decile: decile).average(:one_mo)
+  def three_yr
+    @ps.average(:three_yr)
   end
 
-  def one_mo(decile)
-    PriceShiller.where(decile: decile).average(:one_mo)
+  def five_yr
+    @ps.average(:five_yr)
   end
 
-  def one_mo(decile)
-    PriceShiller.where(decile: decile).average(:one_mo)
+  def ten_yr
+    @ps.average(:ten_yr)
   end
 
 

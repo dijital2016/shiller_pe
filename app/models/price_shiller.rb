@@ -31,7 +31,7 @@ class PriceShiller < ApplicationRecord
 
   def self.load_all_dividends
     Sp500DividendService.all_divs.map do |line|
-      PriceShiller.find_by(date: (line[0].to_date)+1.day).update!(mo_divs: line[1])
+      PriceShiller.find_by(date: (line[0].to_date)+1.day).update!(mo_divs: (line[1])/12)
       puts "Updated mo_divs for #{line[0]}"
 
     end
@@ -75,13 +75,13 @@ class PriceShiller < ApplicationRecord
     ps.each do |dateline|
       date = dateline.date
       dateline.update!(
-      one_mo: NumberCrunching.cagr_calcs(date, date + 1.month),
-      three_mo: NumberCrunching.cagr_calcs(date,date + 3.months),
-      six_mo: NumberCrunching.cagr_calcs(date, date + 6.months),
-      one_yr: NumberCrunching.cagr_calcs(date, date + 1.year),
-      three_yr: NumberCrunching.cagr_calcs(date, date + 3.years),
-      five_yr: NumberCrunching.cagr_calcs(date, date + 5.years),
-      ten_yr: NumberCrunching.cagr_calcs(date, date + 10.years),
+      one_mo: (NumberCrunching.cagr_calcs(date, date + 1.month)).to_f.round(2),
+      three_mo: (NumberCrunching.cagr_calcs(date,date + 3.months)).to_f.round(2),
+      six_mo: (NumberCrunching.cagr_calcs(date, date + 6.months)).to_f.round(2),
+      one_yr: (NumberCrunching.cagr_calcs(date, date + 1.year)).to_f.round(2),
+      three_yr: (NumberCrunching.cagr_calcs(date, date + 3.years)).to_f.round(2),
+      five_yr: (NumberCrunching.cagr_calcs(date, date + 5.years)).to_f.round(2),
+      ten_yr: (NumberCrunching.cagr_calcs(date, date + 10.years)).to_f.round(2),
       )
     end
   end

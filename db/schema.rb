@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170110214902) do
     t.decimal  "six_mo"
     t.decimal  "one_yr"
     t.decimal  "three_yr"
-    t.decimal  "five_year"
+    t.decimal  "five_yr"
     t.decimal  "ten_yr"
   end
 
