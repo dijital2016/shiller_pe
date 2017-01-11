@@ -1,5 +1,5 @@
 class AbsPerfController < ApplicationController
   def index
-    @perf_by_decile = 1
+    @performance_by_decile = DecilePerformance.all
   end
 end

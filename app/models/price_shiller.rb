@@ -1,7 +1,6 @@
 class PriceShiller < ApplicationRecord
   include NumberCrunching
   validates :date, uniqueness: true
-  attr_reader :decile_hash
 
   enum decile: {
     unassigned: 0,
@@ -38,7 +37,7 @@ class PriceShiller < ApplicationRecord
     end
   end
 
-  def self.decile_calculations
+  def self.set_deciles
     PriceShiller.order(:shiller_pe).first(120).each do |line|
       line.one!
     end
@@ -71,17 +70,20 @@ class PriceShiller < ApplicationRecord
     end
   end
 
-  def self.performance_by_date(date)
-    ps = PriceShiller.find_by(date: date)
-    ps.update(
-    one_mo: ps.cagr_calcs(date, date + 1.month),
-    three_mo: ps.cagr_calcs(date,date + 3.months),
-    six_mo: ps.cagr_calcs(date, date + 6.months),
-    one_yr: ps.cagr_calcs(date, date + 1.year),
-    three_yr: ps.cagr_calcs(date, date + 3.years),
-    five_yr: ps.cagr_calcs(date, date + 5.years),
-    ten_yr: ps.cagr_calcs(date, date + 10.years),
-    )
+  def self.performance_by_date
+    ps = PriceShiller.all
+    ps.each do |dateline|
+      date = dateline.date
+      dateline.update!(
+      one_mo: NumberCrunching.cagr_calcs(date, date + 1.month),
+      three_mo: NumberCrunching.cagr_calcs(date,date + 3.months),
+      six_mo: NumberCrunching.cagr_calcs(date, date + 6.months),
+      one_yr: NumberCrunching.cagr_calcs(date, date + 1.year),
+      three_yr: NumberCrunching.cagr_calcs(date, date + 3.years),
+      five_yr: NumberCrunching.cagr_calcs(date, date + 5.years),
+      ten_yr: NumberCrunching.cagr_calcs(date, date + 10.years),
+      )
+    end
   end
 
   private

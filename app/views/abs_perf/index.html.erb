@@ -5,18 +5,19 @@
     <th align="center">Shiller P/E<br />Decile</th><th align="center">1-month<br />Performance</th>
           <th align="center">3-month<br />Performance</th><th align="center">6-month<br />Performance</th>
           <th align="center">1-year<br />Performance</th><th align="center">3-year<br />Performance</th>
-          <th align="center">5-year<br />Performance</th>
-      <% @perf_by_decile =  %>
+          <th align="center">5-year<br />Performance</th><th align="center">10-year<br />Performance</th>
+      <% @performance_by_decile.each do |decile| %>
       <tr>
-        <td class="col-xs-" align="center"><%= 1 %>%</td>
-        <td class="col-xs-" align="center"><%= 2 %>%</td>
-        <td class="col-xs-" align="center"><%= 3 %></td>
-        <td class="col-xs-" align="center"><%= 4 %>%</td>
-        <td class="col-xs-" align="center"><%= 5 %>%</td>
-        <td class="col-xs-" align="center"><%= 6 %>%</td>
-        <td class="col-xs-" align="center"><%= 7 %>%</td>
+        <td class="col-xs-" align="center"><%= decile.decile %></td>
+        <td class="col-xs-" align="center"><%= decile.one_mo_cagr %>%</td>
+        <td class="col-xs-" align="center"><%= decile.three_mo_cagr %>%</td>
+        <td class="col-xs-" align="center"><%= decile.six_mo_cagr %>%</td>
+        <td class="col-xs-" align="center"><%= decile.one_yr_cagr %>%</td>
+        <td class="col-xs-" align="center"><%= decile.three_yr_cagr %>%</td>
+        <td class="col-xs-" align="center"><%= decile.five_yr_cagr %>%</td>
+        <td class="col-xs-" align="center"><%= decile.ten_yr_cagr %>%</td>
       </tr>
-    <% end %>
+      <% end %>
   </table>
 </div>
 </div>

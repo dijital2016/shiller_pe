@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PriceShiller, type: :model do
   it "#all_dates" do
-    response = PriceShiller.all_dates
+    response = PriceShiller.load_all_sp500_prices
     first_line = response.first
 
     expect(first_line).to respond_to(:date)
@@ -13,21 +13,15 @@ RSpec.describe PriceShiller, type: :model do
   end
 
   it "calculates performance by date for all timeframes" do
-    first_date = PriceShiller.first
-    a = first_date.one_mo_cagr(first_date.date)
-    b = first_date.three_mo_cagr(first_date.date)
-    c = first_date.six_mo_cagr(first_date.date)
-    d = first_date.one_yr_cagr(first_date.date)
-    e = first_date.three_yr_cagr(first_date.date)
-    f = first_date.five_yr_cagr(first_date.date)
-    g = first_date.ten_yr_cagr(first_date.date)
+    start_date = "1950-01-01"
+    end_date = "1950-03-01"
+    start_data = PriceShiller.new(date: start_date, sp500_price: 1000.00, shiller_pe: 20.0, mo_divs: 10.00)
+    data_2 = PriceShiller.new(date: "1950-02-01", sp500_price: 1100.00, shiller_pe: 22.0, mo_divs: 11.00)
+    data_3 = PriceShiller.new(date: "1950-03-01", sp500_price: 1050.00, shiller_pe: 23.0, mo_divs: 11.50)
+    end_data = PriceShiller.new(date: end_date, sp500_price: 1200.00, shiller_pe: 24.0, mo_divs: 12.00)
+    PriceShiller.performance_by_date
 
-    expect(a).to eq(0.11)
-    expect(b).to eq(0.22)
-    expect(c).to eq(0.33)
-    expect(d).to eq(0.44)
-    expect(e).to eq(0.55)
-    expect(f).to eq(0.66)
-    expect(g).to eq(0.77)
+    expect(start_data.one_mo).to eq(0.11)
+    expect(start_data.three_mo).to eq(0.22)
   end
 end
