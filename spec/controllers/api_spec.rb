@@ -10,7 +10,7 @@ describe Api::V1::DataController do
     ps = price_shillers.first
 
     expect(price_shillers.count).to eq(2)
-    expect(ps.length).to eq(5)
+    expect(ps.length).to eq(15)
     expect(ps).to have_key(:date)
     expect(ps).to have_key(:sp500_price)
     expect(ps).to have_key(:shiller_pe)

@@ -18,7 +18,6 @@ class DataController < ApplicationController
       @all_data = PriceShiller.all.order("date DESC")
     end
     PriceShiller.performance_by_date
-    # DecilePerformance.performance_by_decile
   end
 
 end
