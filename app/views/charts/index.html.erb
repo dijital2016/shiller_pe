@@ -1,6 +1,6 @@
 <div id="container" style="width:100%; height:600px;"></div>
 <script>
-const url = "http://localhost:3000/api/v1/data"
+const url = "https://shiller-pe.herokuapp.com/api/v1/data"
 
 window.fetch(url).then((res) => res.json()).then(json => {
     console.table(json)

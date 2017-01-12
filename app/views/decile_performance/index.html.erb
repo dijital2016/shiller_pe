@@ -1,6 +1,6 @@
-<html style="background-color:#6699ff;>
-<div class="container">
-  <h3>Absolute Performance of the S&P 500 Index by Decile</h3>
+<html>
+<div class="container" >
+  <h3 align="center">Absolute Performance of the S&P 500 Index by Decile</h3>
   <table class="table-bordered table-condensed" align="center" style="background-color:#b3ccff;">
     <th align="center">Shiller P/E<br />Decile</th><th align="center">1-month<br />Performance</th>
           <th align="center">3-month<br />Performance</th><th align="center">6-month<br />Performance</th>
@@ -20,13 +20,13 @@
       <% end %>
       <tr>
         <td class="col-xs" align="center">S&P 500 Index Average</td>
-        <td class="col-xs-" align="center"><%=  %>%</td>
-        <td class="col-xs-" align="center"><%=  %>%</td>
-        <td class="col-xs-" align="center"><%= %>%</td>
-        <td class="col-xs-" align="center"><%= %>%</td>
-        <td class="col-xs-" align="center"><%=  %>%</td>
-        <td class="col-xs-" align="center"><%=  %>%</td>
-        <td class="col-xs-" align="center"><%= %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:one_mo).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:three_mo).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:six_mo).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:one_yr).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:three_yr).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:five_yr).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:ten_yr).round(1) %>%</td>
       </tr>
   </table>
 </div>
