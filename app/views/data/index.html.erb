@@ -25,7 +25,7 @@
         <td class="col-xs-" align="center"><%= number_to_currency(line.sp500_price) %></td>
         <td class="col-xs-" align="center"><%= number_with_precision(line.shiller_pe, :precision => 2) %></td>
         <td class="col-xs-" align="center"><%= number_to_currency(line.mo_divs) %></td>
-        <td class="col-xs-" align="center"><%= @decile_hash[line.decile.to_sym] %></td>
+        <td class="col-xs-" align="center"><%= line.decile %></td>
         <td class="col-xs-" align="center"><%= line.one_mo %>%</td>
         <td class="col-xs-" align="center"><%= line.three_mo %>%</td>
         <td class="col-xs-" align="center"><%= line.six_mo %>%</td>
