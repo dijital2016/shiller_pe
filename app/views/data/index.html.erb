@@ -1,8 +1,19 @@
 <div style="background-color:#6699ff;">
 <div class="container" >
-  <h2 align=center>Welcome!<h2>
-  <h3>Historical S&P 500 Stock Prices</h3>
-  <table class="table-bordered table-condensed" align="left" style="background-color:#b3ccff;">
+    <h4 align=left>
+      <p>The Shiller P/E Index is the ratio of the average price of stocks
+        divided by the average earnings of those stocks over the last ten
+        years, adjusted for inflation.  Many people consider it a good
+        indication of whether the stock market is overvalued or undervalued.</p>
+        <p>This website is an exploration into the predictive value of the Shiller
+          P/E ratio regarding future performance of the stock market.</p>
+      <p>For the last 100 years, the average value of the Shiller P/E Ratio is:
+      <%= PriceShiller.average(:shiller_pe).to_f.round(1) %> </p>
+      <p>Currently, the Shiller P/E is:
+        <%= PriceShiller.first.shiller_pe %>
+    </h4>
+  <h2  align=center>Historical S&P 500 Stock Prices</h2>
+  <table class="table-bordered table-condensed" align="center" style="background-color:#b3ccff;">
     <th align="center">Date</th><th align="center">S&P 500<br />Price</th>
           <th align="center">Shiller P/E<br />Ratio</th><th align="center">Monthly<br />Dividends</th>
           <th align="center">Shiller P/E<br />Decile</th><th align="center">1-month</th>
