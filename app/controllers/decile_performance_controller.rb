@@ -1,4 +1,5 @@
 class DecilePerformanceController < ApplicationController
+
   def index
     if DecilePerformance.count == 0
       DecilePerformance.generate_decile_data
@@ -9,4 +10,5 @@ class DecilePerformanceController < ApplicationController
       @performance_by_decile = DecilePerformance.all
     end
   end
+
 end

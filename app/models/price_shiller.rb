@@ -19,6 +19,7 @@ class PriceShiller < ApplicationRecord
   def self.load_all_sp500_prices
     StandardPoorService.all_sp_prices.map do |line|
       PriceShiller.create!(date: line[0].to_date, sp500_price: line[1], shiller_pe: "", mo_divs: "")
+      puts "Updated sp_500_prices for #{line[0]}"
     end
   end
 
@@ -38,6 +39,7 @@ class PriceShiller < ApplicationRecord
   end
 
   def self.set_deciles
+    puts "Setting deciles"
     PriceShiller.order(:shiller_pe).first(120).each do |line|
       line.one!
     end
