@@ -13,4 +13,4 @@ PriceShiller.load_all_sp500_prices
 PriceShiller.load_all_shiller_pe_ratios
 PriceShiller.load_all_dividends
 PriceShiller.set_deciles
-PriceShiller.performance_by_date
+PriceShiller.abs_performance_by_date

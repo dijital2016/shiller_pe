@@ -16,11 +16,14 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ #decile-page {
+    background-color:#6699ff;
+ }
+
  #container {
   min-width: 300px;
+  width: auto;
   max-width: 800px;
   height: 300px;
   margin: 1em auto;
 }
-#bg-color {
- }

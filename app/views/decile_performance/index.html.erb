@@ -1,21 +1,21 @@
-<html>
-<div class="container" >
+<body style="background-color:#8899ff">
+<div class="container">
   <h3 align="center">Absolute Performance of the S&P 500 Index by Decile</h3>
-  <table class="table-bordered table-condensed" align="center" style="background-color:#b3ccff;">
+  <table class="table-bordered table-condensed" align="center" id="decile-table" style="background-color:#a5c6ba">
     <th align="center">Shiller P/E<br />Decile</th><th align="center">1-month<br />Performance</th>
           <th align="center">3-month<br />Performance</th><th align="center">6-month<br />Performance</th>
           <th align="center">1-year<br />Performance</th><th align="center">3-year<br />Performance</th>
           <th align="center">5-year<br />Performance</th><th align="center">10-year<br />Performance</th>
       <% @performance_by_decile.each do |dec| %>
-      <tr>
+      <tr id="decile-data">
         <td class="col-xs" align="center"><%= dec.decile %></td>
-        <td class="col-xs-" align="center"><%= dec.one_mo %>%</td>
-        <td class="col-xs-" align="center"><%= dec.three_mo %>%</td>
-        <td class="col-xs-" align="center"><%= dec.six_mo %>%</td>
-        <td class="col-xs-" align="center"><%= dec.one_yr %>%</td>
-        <td class="col-xs-" align="center"><%= dec.three_yr %>%</td>
-        <td class="col-xs-" align="center"><%= dec.five_yr %>%</td>
-        <td class="col-xs-" align="center"><%= dec.ten_yr %>%</td>
+        <td class="col-xs" align="center" id="dec-one_mo"><%= dec.one_mo %>%</td>
+        <td class="col-xs" align="center" id="dec-three_mo"><%= dec.three_mo %>%</td>
+        <td class="col-xs" align="center" id="dec-six_mo"><%= dec.six_mo %>%</td>
+        <td class="col-xs" align="center" id="dec-one_yr"><%= dec.one_yr %>%</td>
+        <td class="col-xs" align="center" id="dec-three_yr"><%= dec.three_yr %>%</td>
+        <td class="col-xs" align="center" id="dec-five_yr"><%= dec.five_yr %>%</td>
+        <td class="col-xs" align="center" id="dec-ten_yr"><%= dec.ten_yr %>%</td>
       </tr>
       <% end %>
       <tr>
@@ -30,4 +30,37 @@
       </tr>
   </table>
 </div>
-</html>
+
+
+<div class="container" >
+  <h3 align="center" style="margin-top: 40px">Annualized Performance of the S&P 500 Index by Decile</h3>
+  <table class="table-bordered table-condensed" align="center" id="decile-table" style="background-color:#b3ccdd;">
+    <th align="center">Shiller P/E<br />Decile</th><th align="center">1-month<br />Performance</th>
+          <th align="center">3-month<br />Performance</th><th align="center">6-month<br />Performance</th>
+          <th align="center">1-year<br />Performance</th><th align="center">3-year<br />Performance</th>
+          <th align="center">5-year<br />Performance</th><th align="center">10-year<br />Performance</th>
+      <% @performance_by_decile.each do |dec| %>
+      <tr id="decile-data">
+        <td class="col-xs" align="center"><%= dec.decile %></td>
+        <td class="col-xs-" align="center" id="dec-one_mo"><%= (((((dec.one_mo / 100) + 1) ** 12) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center" id="dec-three_mo"><%= (((((dec.three_mo / 100) + 1) ** 4) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center" id="dec-six_mo"><%= (((((dec.six_mo / 100) + 1) ** 2) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center" id="dec-one_yr"><%= dec.one_yr %>%</td>
+        <td class="col-xs-" align="center" id="dec-three_yr"><%= (((((dec.three_yr / 100) + 1) ** (0.3333)) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center" id="dec-five_yr"><%= (((((dec.five_yr / 100) + 1) ** (0.2)) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center" id="dec-ten_yr"><%= (((((dec.ten_yr / 100) + 1) ** (0.1)) -1)*100).round(1) %>%</td>
+      </tr>
+      <% end %>
+      <tr>
+        <td class="col-xs" align="center">S&P 500 Index Average</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:one_mo).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:three_mo).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:six_mo).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:one_yr).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:three_yr).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:five_yr).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= PriceShiller.average(:ten_yr).round(1) %>%</td>
+      </tr>
+  </table>
+</div>
+</body>

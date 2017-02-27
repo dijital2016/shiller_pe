@@ -4,7 +4,7 @@ module NumberCrunching
     PriceShiller.where("decile = 10").average(:shiller_pe).to_f.round(2)
   end
 
-  def self.cagr_calcs(start_date,end_date)
+  def self.abs_return_calcs(start_date,end_date)
     if PriceShiller.find_by(date: end_date)
       start_ps = PriceShiller.find_by(date: start_date)
       end_ps = PriceShiller.find_by(date: end_date)
@@ -15,10 +15,6 @@ module NumberCrunching
     else
       return nil
     end
-  end
-
-  def self.cagr_prep(start_date,end_date)
-    cagr_update_hash = {}
   end
 
   def self.calculate_dividends(start_date,end_date)

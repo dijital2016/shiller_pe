@@ -19,7 +19,7 @@ RSpec.describe PriceShiller, type: :model do
     data_2 = PriceShiller.new(date: "1950-02-01", sp500_price: 1100.00, shiller_pe: 22.0, mo_divs: 11.00)
     data_3 = PriceShiller.new(date: "1950-03-01", sp500_price: 1050.00, shiller_pe: 23.0, mo_divs: 11.50)
     end_data = PriceShiller.new(date: end_date, sp500_price: 1200.00, shiller_pe: 24.0, mo_divs: 12.00)
-    PriceShiller.performance_by_date
+    PriceShiller.abs_performance_by_date
 
     expect(start_data.one_mo).to eq(0.11)
     expect(start_data.three_mo).to eq(0.22)

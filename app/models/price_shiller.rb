@@ -72,18 +72,18 @@ class PriceShiller < ApplicationRecord
     end
   end
 
-  def self.performance_by_date
+  def self.abs_performance_by_date
     ps = PriceShiller.all
     ps.each do |dateline|
       date = dateline.date
       dateline.update!(
-      one_mo: (NumberCrunching.cagr_calcs(date, date + 1.month)).to_f.round(2),
-      three_mo: (NumberCrunching.cagr_calcs(date,date + 3.months)).to_f.round(2),
-      six_mo: (NumberCrunching.cagr_calcs(date, date + 6.months)).to_f.round(2),
-      one_yr: (NumberCrunching.cagr_calcs(date, date + 1.year)).to_f.round(2),
-      three_yr: (NumberCrunching.cagr_calcs(date, date + 3.years)).to_f.round(2),
-      five_yr: (NumberCrunching.cagr_calcs(date, date + 5.years)).to_f.round(2),
-      ten_yr: (NumberCrunching.cagr_calcs(date, date + 10.years)).to_f.round(2),
+      one_mo: (NumberCrunching.abs_return_calcs(date, date + 1.month)).to_f.round(2),
+      three_mo: (NumberCrunching.abs_return_calcs(date,date + 3.months)).to_f.round(2),
+      six_mo: (NumberCrunching.abs_return_calcs(date, date + 6.months)).to_f.round(2),
+      one_yr: (NumberCrunching.abs_return_calcs(date, date + 1.year)).to_f.round(2),
+      three_yr: (NumberCrunching.abs_return_calcs(date, date + 3.years)).to_f.round(2),
+      five_yr: (NumberCrunching.abs_return_calcs(date, date + 5.years)).to_f.round(2),
+      ten_yr: (NumberCrunching.abs_return_calcs(date, date + 10.years)).to_f.round(2),
       )
     end
   end
