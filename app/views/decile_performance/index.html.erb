@@ -53,14 +53,15 @@
       <% end %>
       <tr>
         <td class="col-xs" align="center">S&P 500 Index Average</td>
-        <td class="col-xs-" align="center"><%= PriceShiller.average(:one_mo).round(1) %>%</td>
-        <td class="col-xs-" align="center"><%= PriceShiller.average(:three_mo).round(1) %>%</td>
-        <td class="col-xs-" align="center"><%= PriceShiller.average(:six_mo).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%=  ((((((PriceShiller.average(:one_mo)) / 100) + 1) ** 12) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%=  ((((((PriceShiller.average(:three_mo)) / 100) + 1) ** 4) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%=  ((((((PriceShiller.average(:six_mo)) / 100) + 1) ** 2) -1)*100).round(1) %>%</td>
         <td class="col-xs-" align="center"><%= PriceShiller.average(:one_yr).round(1) %>%</td>
-        <td class="col-xs-" align="center"><%= PriceShiller.average(:three_yr).round(1) %>%</td>
-        <td class="col-xs-" align="center"><%= PriceShiller.average(:five_yr).round(1) %>%</td>
-        <td class="col-xs-" align="center"><%= PriceShiller.average(:ten_yr).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%= ((((((PriceShiller.average(:three_yr)) / 100) + 1) ** (0.3333)) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%=  ((((((PriceShiller.average(:five_yr)) / 100) + 1) ** (0.2)) -1)*100).round(1) %>%</td>
+        <td class="col-xs-" align="center"><%=  ((((((PriceShiller.average(:ten_yr)) / 100) + 1) ** (0.1)) -1)*100).round(1) %>%</td>
       </tr>
   </table>
 </div>
 </body>
+PriceShiller.average(:one_mo)
