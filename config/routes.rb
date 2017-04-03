@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root 'data#index'
   get '/charts', to: 'charts#index'
   get '/chartstest', to: 'charts#show'
-  get '/decile_performance', to: "decile_performance#index"
+  get '/decile_performance', to: 'decile_performance#index'
+  get '/conclusions', to: 'conclusions#index'
 
   namespace :api do
     namespace :v1 do
