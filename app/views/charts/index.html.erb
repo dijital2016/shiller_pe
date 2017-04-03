@@ -1,10 +1,10 @@
-<script src="http://code.highcharts.com/stock/highstock.js"></script>
-<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 
 <div id="container" style="height: 600px; width: 100%"></div>
 
 <script>
-dataUrl = "http://https://shiller-pe.herokuapp.com//api/v1/data"
+dataUrl = "https://shiller-pe.herokuapp.com//api/v1/data"
 window.fetch(dataUrl).then((res) => res.json()).then(json => {
     // console.table(json)
     const series = [...Array(3)].map((v, i) => {
