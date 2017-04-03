@@ -4,7 +4,7 @@
 <div id="container" style="height: 600px; width: 100%"></div>
 
 <script>
-dataUrl = "http://localhost:3000/api/v1/data"
+dataUrl = "http://https://shiller-pe.herokuapp.com//api/v1/data"
 window.fetch(dataUrl).then((res) => res.json()).then(json => {
     // console.table(json)
     const series = [...Array(3)].map((v, i) => {
